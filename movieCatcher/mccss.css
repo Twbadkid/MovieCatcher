@@ -1,4 +1,6 @@
-﻿h4 {
+﻿
+
+h4 {
   margin: 0;
   opacity: 1;
   min-width: 960px;
@@ -19,11 +21,17 @@ circle {
 }
 /*這也是那個圖線的東東*/
 
+.rec{
+	width: 1000;
+	height: 500;
+	background-color: white;
+}
+
 .ll{
 	text-align: right;
 	font-size: 16;
 }
-/*朝左對齊*/
+/*朝右對齊*/
 
 .backblack{
 	background-color: black;

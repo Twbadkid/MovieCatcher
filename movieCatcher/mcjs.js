@@ -3,6 +3,7 @@ var i ;
 var svg ;
 
 window.onload=function(){
+  // circle
     var width = Math.max(960, innerWidth),
     height = 460;
 
@@ -15,6 +16,7 @@ window.onload=function(){
     .attr("width", width)
     .attr("height", height)
     .on("ontouchstart" in document ? "touchmove" : "mousemove", particle);
+    //circle
 }
 
 
