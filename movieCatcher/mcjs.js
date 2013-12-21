@@ -3,23 +3,23 @@ var i ;
 var svg ;
 
 window.onload=function(){
-  var w = 960,
+  var w = 1200,
       h = 500;
 
     var color = d3.scale.category20();
 
     var force = d3.layout.force()
-        .charge(-120)
-        .linkDistance(30)
+        .charge(-120) //node之間的電荷，+代表相吸 -相斥( -120)
+        .linkDistance(30) //link的長度( 30)
         .size([w, h]);
 
     var s = d3.select("h6").append("svg")
         .attr("width", w)
         .attr("height", h);
 
-    d3.json("js/miserables.json", function(error, graph) {
+    d3.json("js/jsontest.json", function(error, graph) {
       force
-          .nodes(graph.nodes)
+          .nodes(graph.nodes) 
           .links(graph.links)
           .start();
 
@@ -33,7 +33,7 @@ window.onload=function(){
           .data(graph.nodes)
         .enter().append("circle")
           .attr("class", "node")
-          .attr("r", 5)
+          .attr("r", 5) //node的半徑 ( 5)
           .style("fill", function(d) { return color(d.group); })
           .call(force.drag);
 
@@ -50,7 +50,7 @@ window.onload=function(){
             .attr("cy", function(d) { return d.y; });
       });
     });
-
+// force
 
 
 
