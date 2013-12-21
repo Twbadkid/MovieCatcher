@@ -9,8 +9,8 @@ window.onload=function(){
     var color = d3.scale.category20();
 
     var force = d3.layout.force()
-        .charge(-120) //node之間的電荷，+代表相吸 -相斥( -120)
-        .linkDistance(30) //link的長度( 30)
+        .charge(120) //node之間的電荷，+代表相吸 -相斥( -120)
+        .linkDistance(-30) //link的長度( 30)
         .size([w, h]);
 
     var s = d3.select("h6").append("svg")
@@ -46,8 +46,8 @@ window.onload=function(){
             .attr("x2", function(d) { return d.target.x; })
             .attr("y2", function(d) { return d.target.y; });
 
-        node.attr("cx", function(d) { return d.x; })
-            .attr("cy", function(d) { return d.y; });
+        node.attr("cx", function(d) { return d.x; });
+            // .attr("cy", function(d) { return d.y; });
       });
     });
 // force
