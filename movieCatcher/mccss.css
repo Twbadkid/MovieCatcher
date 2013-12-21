@@ -1,5 +1,6 @@
 ﻿
 
+
 h4 {
   margin: 0;
   opacity: 1;
@@ -7,19 +8,33 @@ h4 {
   background-image: url("img/logo.png");
   background-repeat: no-repeat;
 }
-/*這是那個圖線的東東*/
+/*這是之前D3的style*/
 
 rect {
   fill: none;
   pointer-events: all;
 }
-/*這也是那個圖線的東東*/
+/*同上*/
 
 circle {
   fill: none;
   stroke-width: 2.5px;
 }
-/*這也是那個圖線的東東*/
+/*同上*/
+
+
+
+.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.link {
+  stroke: #999;
+  stroke-opacity: .6;
+}
+/*D3 force測試*/
+
 
 .rec{
 	width: 1000;
