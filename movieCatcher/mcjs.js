@@ -1,4 +1,3 @@
-var i ;
 
 var svg ;
 
@@ -9,16 +8,21 @@ window.onload=function(){
     var color = d3.scale.category20();
 
     var force = d3.layout.force()
-        .charge(120) //node之間的電荷，+代表相吸 -相斥( -120)
-        .linkDistance(-30) //link的長度( 30)
+        // .gravity(0)
+        .charge(-120) //node之間的電荷，+代表相吸 -相斥( -120)
+        .linkDistance(30) //link的長度( 30)
         .size([w, h]);
 
     var s = d3.select("h6").append("svg")
         .attr("width", w)
         .attr("height", h);
 
+
+
+
     d3.json("js/jsontest.json", function(error, graph) {
       force
+
           .nodes(graph.nodes) 
           .links(graph.links)
           .start();
@@ -27,7 +31,8 @@ window.onload=function(){
           .data(graph.links)
         .enter().append("line")
           .attr("class", "link")
-          .style("stroke-width", function(d) { return Math.sqrt(d.value); });
+          // .style("stroke-width", function(d) { return Math.sqrt(d.value); });
+          .style("fill", function(d) { return color(d.group); });
 
       var node = s.selectAll(".node")
           .data(graph.nodes)
@@ -46,8 +51,8 @@ window.onload=function(){
             .attr("x2", function(d) { return d.target.x; })
             .attr("y2", function(d) { return d.target.y; });
 
-        node.attr("cx", function(d) { return d.x; });
-            // .attr("cy", function(d) { return d.y; });
+        node.attr("cx", function(d) { return d.x; })
+            .attr("cy", function(d) { return d.y; });
       });
     });
 // force
