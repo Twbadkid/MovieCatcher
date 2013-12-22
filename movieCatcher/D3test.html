@@ -14,9 +14,9 @@
 <script src="js/d3.v3.min.js"></script>
 <!-- D3套件的js -->
 
-<title>MovieCatcher</title>
+<title>D3test</title>
 </head>
-	</head>
+
 	<body>
 		<script type="text/javascript">
 var h=300;
@@ -69,6 +69,7 @@ edges:[//邊
 				.append("svg")
 				.attr("width",w)
 				.attr("height",h);
+				
 //(3)創建作為連線的svg直線
 		var edges=svg.selectAll("line")
 .data(dataset.edges)
@@ -80,6 +81,8 @@ edges:[//邊
 .style("stroke-width",function(d,i){//設置線的寬度
 	return d.weight;
 });
+
+
 //(4) 創建作為連線的svg圓形
 var nodes=svg.selectAll("circle")
 .data(dataset.nodes)

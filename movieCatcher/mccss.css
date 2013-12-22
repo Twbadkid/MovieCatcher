@@ -28,13 +28,13 @@ circle {
 /*同上*/
 
 .node {
-  /*stroke: #fff;*/
+
   stroke:black;
   stroke-width: 3px;
 }
 
 .link {
-  /*stroke: #999;*/
+
   stroke:red;
   stroke-opacity: 0.6;
 }

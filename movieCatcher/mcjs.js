@@ -6,6 +6,7 @@ window.onload=function(){
       h = 500;
 
     var color = d3.scale.category20();
+    var colors = d3.scale.category10();
 
     var force = d3.layout.force()
         // .gravity(0)
@@ -13,25 +14,27 @@ window.onload=function(){
         .linkDistance(30) //link的長度( 30)
         .size([w, h]);
 
+
     var s = d3.select("h6").append("svg")
         .attr("width", w)
         .attr("height", h);
 
 
 
-
-    d3.json("js/jsontest.json", function(error, graph) {
+    d3.json("js/miserables.json", function(error, graph) {
+    // d3.json("js/jsontest.json", function(error, graph) {
       force
           .nodes(graph.nodes) 
           .links(graph.links)
           .start();
 
-      var link = s.selectAll(".link")
+      var link = s.selectAll("line")
         .data(graph.links)
         .enter().append("line")
-        .attr("class","link")
-        .style("stroke-width", function(d) { return Math.sqrt(d.value); });
-          // .style("fill", function(d) { return color(d.group); });
+        // .attr("class","link")
+        .style("stroke",function(d){return color(d.color);})
+        .style("stroke-width", function(d,i) { return d.weight });
+          
 
         // s.attr("class","link");
         
@@ -39,7 +42,7 @@ window.onload=function(){
       var node = s.selectAll(".node")
           .data(graph.nodes)
         .enter().append("circle")
-          .attr("class", "node")
+          // .attr("class", "node")
           .attr("r", 5) //node的半徑 ( 5)
           .style("fill", function(d) { return color(d.group); })
           .call(force.drag);
