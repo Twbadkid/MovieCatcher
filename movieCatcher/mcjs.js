@@ -22,17 +22,19 @@ window.onload=function(){
 
     d3.json("js/jsontest.json", function(error, graph) {
       force
-
           .nodes(graph.nodes) 
           .links(graph.links)
           .start();
 
       var link = s.selectAll(".link")
-          .data(graph.links)
+        .data(graph.links)
         .enter().append("line")
-          .attr("class", "link")
-          // .style("stroke-width", function(d) { return Math.sqrt(d.value); });
-          .style("fill", function(d) { return color(d.group); });
+        .attr("class","link")
+        .style("stroke-width", function(d) { return Math.sqrt(d.value); });
+          // .style("fill", function(d) { return color(d.group); });
+
+        // s.attr("class","link");
+        
 
       var node = s.selectAll(".node")
           .data(graph.nodes)

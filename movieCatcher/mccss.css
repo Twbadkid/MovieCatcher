@@ -10,6 +10,11 @@ h4 {
 }
 /*這是之前D3的style*/
 
+h6{
+	background-image: url("img/logo.png");
+	background-repeat:no-repeat;
+}
+
 rect {
   fill: none;
   pointer-events: all;
@@ -21,8 +26,6 @@ circle {
   stroke-width: 2.5px;
 }
 /*同上*/
-
-
 
 .node {
   /*stroke: #fff;*/

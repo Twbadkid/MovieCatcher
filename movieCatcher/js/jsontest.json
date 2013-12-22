@@ -1,6 +1,9 @@
 {
+    "flycs":[
+        {"name":"FC","group":1}
+    ],
   "nodes":[
-    {"name":"Myriel","group":1},
+    {"name":"Myriel","group":1,"color":"blue"},
     {"name":"Napoleon","group":1},
     {"name":"Mlle.Baptistine","group":1},
     {"name":"Mme.Magloire","group":1},
