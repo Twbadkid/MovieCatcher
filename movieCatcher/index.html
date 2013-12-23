@@ -1,6 +1,73 @@
 <html>
 <meta cahrset="utf-8">
 <head>
+
+   
+	
+
+    <!--FB secret -->
+    <script src="your_secret.js"></script>
+
+    <!-- BLOCK: FB SDK initialization -->
+	<script>
+		window.fbAsyncInit = function() {
+	        // init the FB JS SDK
+	        FB.init({
+	        appId      : FacebookAppId,                        // App ID from the app dashboard
+	        cookie     : true,                                 // Allowed server-side to fetch fb auth cookie
+	        status     : true,                                 // Check Facebook Login status
+	        xfbml      : true                                  // Look for social plugins on the page
+	        });
+
+	        // Additional initialization code such as adding Event Listeners goes here
+	        window.fbLoaded();
+	    };
+
+	    // Load the SDK asynchronously
+	    (function(d, s, id){
+	        var js, fjs = d.getElementsByTagName(s)[0];
+	        if (d.getElementById(id)) {return;}
+	        js = d.createElement(s); js.id = id;
+	        //js.src = "//connect.facebook.net/en_US/all.js";
+	        // Debug version of Facebook JS SDK
+	        js.src = "//connect.facebook.net/en_US/all/debug.js";
+	        fjs.parentNode.insertBefore(js, fjs);
+	    }(document, 'script', 'facebook-jssdk'));
+	</script>
+	<!-- BLOCK: FB SDK initialization -->
+	
+	<!--BLOCK: Your script playground -->
+	<script id="my-script-playground">
+	        window.fbLoaded = function(){
+	            // define the events when login status changed.
+	           FB.Event.subscribe('auth.authResponseChange', function(response) {
+	                if(response.status === 'connected') {
+	                // when user has been logged in, this block will be triggered.
+	                    var msg = "You're logged in.";
+	                    $("#my-login-message").html(msg);
+	                    
+	                    FB.api('/me', function(response) {
+          					console.log(response.name + '的肝還好嗎?');
+        				});                    
+        				FB.api('/me/picture?width=250', function(response) {
+                   		 	var my_picture_url = response.data.url;
+                
+                    		$("#my-profile-picture").attr('src', my_picture_url);
+               			});
+	                }else{
+	                    FB.login();
+	                }
+	            });
+
+	            // define the action when user clicked the login button.
+	            $("#FB-login-button").click(function(){
+	                FB.login();
+	            });
+	        }
+	</script>
+	<!-- ENDBLOCK: Your script playground -->
+
+
 <script type="text/javascript" src="mcjs.js"></script>
 <link rel="stylesheet" type="text/css" href="mccss.css">
 <!-- 我們自己的js和css -->
@@ -18,9 +85,21 @@
 </head>
 <body class="backblack">
 	<br>
-		
-	<div class="ll "><button type="button" class="btn btn-primary ">Hi, 肝</button></div>
+	
+	<!--FB login botton-->
+	<div id="my-login-control" class="ll"><button id="FB-login-button"
+		class="btn btn-primary ">Hi, 肝</button>
+		<p id="my-login-message"></p></div>
+
 	<!-- Hi肝 -->
+	<!--user picture -->
+	<div id="my-profile" class="row">
+		<div class="col-md-15">
+                <!-- Profile Picture -->
+                <img id="my-profile-picture" class="img-thumbnail" src="" alt="" widget="200" height="200">
+        </div>
+    </div>
+	<!--user picture -->
 	
 	<p><h6></h6></p>
 	<!-- D3的位子 -->
