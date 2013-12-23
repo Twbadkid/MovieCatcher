@@ -1,11 +1,15 @@
 {
     "nodes":[
-        {"name":"FC","group":9},
-        {"name":"CF","group":10},
+        {"name":"FC","group":9,"color":2},
+        {"name":"CF","group":10,"color":3},
         {"name":"asdf","group":645}
         
     ],
     "links":[
-        {"source":0,"target":2,"value":1}
+        {"source":0,"target":2,"weight":1,"color":123},
+        {"source":1,"target":0,"weight":0,"color":1},
+        {"source":2,"target":1,"weight":0},
+        {"source":0,"target":0,"weight":0},
+        {"source":0,"target":1,"weight":5,"color":12}
     ]
 }

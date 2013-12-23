@@ -21,7 +21,7 @@ window.onload=function(){
 
 
 
-    d3.json("js/miserables.json", function(error, graph) {
+    d3.json("js/movieList.json", function(error, graph) {
     // d3.json("js/jsontest.json", function(error, graph) {
       force
           .nodes(graph.nodes) 
@@ -32,19 +32,16 @@ window.onload=function(){
         .data(graph.links)
         .enter().append("line")
         // .attr("class","link")
-        .style("stroke",function(d){return color(d.color);})
+        .style("stroke",function(d){return colors(d.color);}) //set color, by ds.scale.category10(), one by one
         .style("stroke-width", function(d,i) { return d.weight });
-          
-
-        // s.attr("class","link");
-        
 
       var node = s.selectAll(".node")
           .data(graph.nodes)
         .enter().append("circle")
-          // .attr("class", "node")
+          .attr("class", "node")
           .attr("r", 5) //node的半徑 ( 5)
           .style("fill", function(d) { return color(d.group); })
+          // .style("stroke",function(d){return colors(d.color)})
           .call(force.drag);
 
       node.append("title")

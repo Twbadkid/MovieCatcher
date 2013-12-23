@@ -30,7 +30,8 @@ circle {
 .node {
 
   stroke:black;
-  stroke-width: 3px;
+  stroke-width: 2.5px;
+  stroke-opacity: 0.6;
 }
 
 .link {
