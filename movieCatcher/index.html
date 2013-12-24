@@ -42,18 +42,20 @@
 	            // define the events when login status changed.
 	           FB.Event.subscribe('auth.authResponseChange', function(response) {
 	                if(response.status === 'connected') {
-	                // when user has been logged in, this block will be triggered.
-	                    var msg = "You're logged in.";
-	                    $("#my-login-message").html(msg);
-	                    
+	                // when user has been logged in
 	                    FB.api('/me', function(response) {
-          					console.log(response.name + '的肝還好嗎?');
-        				});                    
-        				FB.api('/me/picture?width=250', function(response) {
-                   		 	var my_picture_url = response.data.url;
+          					var msg = response.name + '的肝還好嗎?';
+          					
+          					$("#my-login-message").html(msg);
+        				});  
+
+        				//user's picture                   
+        				FB.api('/me/picture?width=150', function(response) {
+                   		 	var user_picture_url = response.data.url;
                 
-                    		$("#my-profile-picture").attr('src', my_picture_url);
+                    		$("#user_picture").attr('src', user_picture_url);
                			});
+
 	                }else{
 	                    FB.login();
 	                }
@@ -66,7 +68,16 @@
 	        }
 	</script>
 	<!-- ENDBLOCK: Your script playground -->
+	<style>
+		.img_user_picture{
 
+			margin-left:85%;
+			margin-right:auto; 
+      		margin-top: 00px;
+      		height : 150px;
+      		width: 150px;
+		}
+	</style>
 
 <script type="text/javascript" src="mcjs.js"></script>
 <link rel="stylesheet" type="text/css" href="mccss.css">
@@ -88,19 +99,21 @@
 	
 	<!--FB login botton-->
 	<div id="my-login-control" class="ll"><button id="FB-login-button"
-		class="btn btn-primary ">Hi, 肝</button>
+		class="btn btn-primary ">FB login</button>
 		<p id="my-login-message"></p></div>
 
 	<!-- Hi肝 -->
+
 	<!--user picture -->
 	<div id="my-profile" class="row">
 		<div class="col-md-15">
-                <!-- Profile Picture -->
-                <img id="my-profile-picture" class="img-thumbnail" src="" alt="" widget="200" height="200">
+                
+                <img id="user_picture" class="img_user_picture" src="" alt="" >
         </div>
     </div>
 	<!--user picture -->
 	
+
 	<p><h6></h6></p>
 	<!-- D3的位子 -->
 
