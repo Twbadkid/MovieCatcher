@@ -120,7 +120,7 @@ window.fbAsyncInit = function() {
                         // }
                     });
                 }
-            },{scope:'email,publish_stream'});
+            },{scope:''});
 
               function fetch_my_profile() {
                 FB.api('/me', function(response) {
