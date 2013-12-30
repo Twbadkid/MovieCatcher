@@ -1,0 +1,41 @@
+{	"nodes":[{"name":"A","group":1},
+	
+		{"name":"A","group":1},
+		{"name":"B","group":2},
+		{"name":"B","group":2},
+
+		{"name":"B","group":2},
+		{"name":"C","group":3},
+		{"name":"C","group":3},
+		{"name":"C","group":3},
+		{"name":"C","group":3},
+		{"name":"C","group":3},
+		{"name":"Movie6","group":6}
+	],
+	"links":[
+		{"source":0,"target":0,"color":"m"},
+		{"source":0,"target":0,"color":"n1"},
+		{"source":0,"target":0,"color":"n2"},
+		{"source":0,"target":0,"color":"w"},
+		{"source":0,"target":0,"color":"n3"},
+		{"source":0,"target":0,"color":"n4"},
+		{"source":0,"target":0,"color":"n5"},
+		{"source":0,"target":0,"color":"g"},
+
+		{"source":0,"target":1,"color":"g","weight":3},
+		{"source":2,"target":3,"color":"m","weight":3},
+		{"source":3,"target":4,"color":"m","weight":3},	
+		{"source":5,"target":6,"color":"n1","weight":3},
+		{"source":6,"target":7,"color":"n1","weight":3},
+		{"source":7,"target":8,"color":"n1","weight":3},	
+		{"source":8,"target":9,"color":"n1","weight":3},
+
+
+		{"source":0,"target":2,"color":"n2","weight":3},
+		{"source":1,"target":3,"color":"n2","weight":3},
+		{"source":2,"target":5,"color":"n2","weight":3},
+		{"source":3,"target":7,"color":"n2","weight":3},
+		{"source":4,"target":8,"color":"n2","weight":3},
+		{"source":0,"target":0}
+	]
+}
