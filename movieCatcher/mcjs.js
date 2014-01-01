@@ -61,9 +61,6 @@ window.onload=function(){
 
 
 
-
-
-
   // circle
     var width = Math.max(960, innerWidth),
     height = 460;
@@ -79,6 +76,79 @@ window.onload=function(){
     .on("ontouchstart" in document ? "touchmove" : "mousemove", particle);
     //circle
 }
+
+
+
+//FB login test start
+window.fbAsyncInit = function() {
+        // init the FB JS SDK
+        FB.init({
+        appId      : FacebookAppId,                        // App ID from the app dashboard
+        cookie     : true,                                 // Allowed server-side to fetch fb auth cookie
+        status     : true,                                 // Check Facebook Login status
+        xfbml      : true,                                  // Look for social plugins on the page
+        oauth:true
+        });
+
+        // Additional initialization code such as adding Event Listeners goes here
+        window.fbLoaded(); // to line 87
+        // alert("The fbLoaded function has been runned"); //test line
+    };
+
+    // Load the SDK asynchronously
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        //js.src = "//connect.facebook.net/en_US/all.js";
+        // Debug version of Facebook JS SDK
+        js.src = "//connect.facebook.net/en_US/all/debug.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+        // alert("fbLoaded has been running");
+        window.fbLoaded = function () {
+
+            FB.login(function(response){
+                //check if user already login,
+                if(response.authResponse){
+                    fetch_my_profile();
+                }else{ //if user has not login, will pop to ask
+                    FB.Event.subscribe('auth.login',function(response){
+                        // if(response.authResponse){
+                            fetch_my_profile();
+                        // }
+                    });
+                }
+            },{scope:''});
+
+              function fetch_my_profile() {
+                FB.api('/me', function(response) {
+                    var my_name = response.name;
+                    var my_gender = response.gender;
+                    var my_username = response.username;
+                    var my_facebook_id = response.id;
+
+                    $("#my-profile-name").html(my_name);
+                    $("#my-profile-gender").html(my_gender);
+                    $("#my-profile-username").html(my_username);
+                    $("#my-profile-facebook-id").html(my_facebook_id);
+                });
+
+                FB.api('/me/picture?width=50', function(response) {
+                    var my_picture_url = response.data.url;
+                
+                    $("#my-profile-picture").attr('src', my_picture_url);
+
+                });
+            };
+
+        }
+//FB login test end
+
+
+
+
 
 
 function particle() {
