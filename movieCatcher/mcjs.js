@@ -21,7 +21,7 @@ window.onload=function(){
 
 
 
-    d3.json("js/movieList.json", function(error, graph) {
+    d3.json("MMM.txt", function(error, graph) {
     // d3.json("js/jsontest.json", function(error, graph) {
       force
           .nodes(graph.nodes) 
