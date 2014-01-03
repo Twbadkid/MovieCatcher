@@ -1,50 +1,18 @@
-﻿
-
-
-h4 {
-  margin: 0;
-  opacity: 1;
-  min-width: 960px;
-  background-image: url("img/logo.png");
-  background-repeat: no-repeat;
-}
-/*這是之前D3的style*/
-
-h6{
+﻿h6{
 	background-image: url("img/logo.png");
 	background-repeat:no-repeat;
 }
 
-rect {
-  fill: none;
-  pointer-events: all;
-}
-/*同上*/
-
-circle {
-  fill: none;
-  stroke-width: 2.5px;
-}
-/*同上*/
-
 .node {
-
-  stroke:black;
-  stroke-width: 2.5px;
-  stroke-opacity: 0.6;
+	cursor: cell;
 }
 
-.link {
-
-  stroke:red;
-  stroke-opacity: 0.6;
+.node text {
+  pointer-events: none;
+  font: 10px sans-serif;
 }
-/*D3 force測試*/
-
 
 .rec{
-	width: 1000;
-	height: 500;
 	background-color: white;
 }
 
