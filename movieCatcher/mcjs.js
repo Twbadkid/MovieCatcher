@@ -1,4 +1,3 @@
-
 var svg ;
 
 window.onload=function(){
@@ -10,8 +9,8 @@ window.onload=function(){
 
     var force = d3.layout.force()
         // .gravity(0)
-        .charge(-120) //nodeä¹‹é–“çš„é›»è·ï¼Œ+ä»£è¡¨ç›¸å¸ -ç›¸æ–¥( -120)
-        .linkDistance(30) //linkçš„é•·åº¦( 30)
+        .charge(-120) //node¤§¶¡ªº¹q²ü¡A+¥Nªí¬Û§l -¬Û¥¸( -120)
+        .linkDistance(30) //linkªºªø«×( 30)
         .size([w, h]);
 
 
@@ -21,10 +20,10 @@ window.onload=function(){
 
 
 
-    d3.json("js/movieList.json", function(error, graph) {
+    d3.json("MMM.txt", function(error, graph) {
     // d3.json("js/jsontest.json", function(error, graph) {
       force
-          .nodes(graph.nodes) 
+          .nodes(graph.nodes)
           .links(graph.links)
           .start();
 
@@ -39,7 +38,7 @@ window.onload=function(){
           .data(graph.nodes)
         .enter().append("circle")
           .attr("class", "node")
-          .attr("r", 5) //nodeçš„åŠå¾‘ ( 5)
+          .attr("r", 5) //nodeªº¥b®| ( 5)
           .style("fill", function(d) { return color(d.group); })
           // .style("stroke",function(d){return colors(d.color)})
           .call(force.drag);
@@ -83,10 +82,10 @@ window.onload=function(){
 window.fbAsyncInit = function() {
         // init the FB JS SDK
         FB.init({
-        appId      : FacebookAppId,                        // App ID from the app dashboard
-        cookie     : true,                                 // Allowed server-side to fetch fb auth cookie
-        status     : true,                                 // Check Facebook Login status
-        xfbml      : true,                                  // Look for social plugins on the page
+        appId : FacebookAppId, // App ID from the app dashboard
+        cookie : true, // Allowed server-side to fetch fb auth cookie
+        status : true, // Check Facebook Login status
+        xfbml : true, // Look for social plugins on the page
         oauth:true
         });
 
