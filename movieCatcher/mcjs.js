@@ -1,79 +1,97 @@
+
 var svg ;
 
 window.onload=function(){
-  var w = 1200,
-      h = 500;
+  var width = 1300,
+    height = 400;
 
-    var color = d3.scale.category20();
+        var color = d3.scale.category20();
     var colors = d3.scale.category10();
 
-    var force = d3.layout.force()
-        // .gravity(0)
-        .charge(-120) //node§ß∂°™∫πq≤¸°A+•N™Ì¨€ßl -¨€•∏( -120)
-        .linkDistance(30) //link™∫™¯´◊( 30)
-        .size([w, h]);
 
+var force = d3.layout.force()
+    .size([width, height])
+    .charge(-120)
+    .linkDistance(20)
+    .on("tick", tick);
 
-    var s = d3.select("h6").append("svg")
-        .attr("width", w)
-        .attr("height", h);
+// var drag = force.drag()
+//     .on("dragstart", dragstart);
 
+var svg = d3.select("h6").append("svg")
+    .attr("width", width)
+    .attr("height", height);
 
+  var link,node;
 
-    d3.json("MMM.txt", function(error, graph) {
-    // d3.json("js/jsontest.json", function(error, graph) {
-      force
-          .nodes(graph.nodes)
-          .links(graph.links)
-          .start();
+// d3.json("js/movieList.json", function(error, graph) {
+  var myjson = document.getElementById("myjson").innerHTML;
+    graph= JSON.parse( myjson );
+  force
+      .nodes(graph.nodes)
+      .links(graph.links)
+      .start();
 
-      var link = s.selectAll("line")
+link = svg.selectAll("line")
         .data(graph.links)
         .enter().append("line")
-        // .attr("class","link")
         .style("stroke",function(d){return colors(d.color);}) //set color, by ds.scale.category10(), one by one
         .style("stroke-width", function(d,i) { return d.weight });
 
-      var node = s.selectAll(".node")
+node = svg.selectAll("node")
           .data(graph.nodes)
         .enter().append("circle")
           .attr("class", "node")
-          .attr("r", 5) //node™∫•bÆ| ( 5)
+          .attr("r", 7) //nodeÁöÑÂçäÂæë ( 5)
+          .attr("src","https://github.com/favicon.ico")
+
           .style("fill", function(d) { return color(d.group); })
-          // .style("stroke",function(d){return colors(d.color)})
+          .style("fill-opacity",function(d){return 0.8})
+
+          // .style("stroke",function(d){return "black"})
+          // .style("stroke-width",function(d){return 3;})
+          // .style("stroke-opacity",function(d){return 0.8;})
+          .on("mouseout",mouseOut)
+          .on("mouseover",mouseOver)
+          .on("dblclick",click)
+
           .call(force.drag);
+// });
 
-      node.append("title")
-          .text(function(d) { return d.name; });
+function tick() {
+  link.attr("x1", function(d) { return d.source.x; })
+      .attr("y1", function(d) { return d.source.y; })
+      .attr("x2", function(d) { return d.target.x; })
+      .attr("y2", function(d) { return d.target.y; });
 
-      force.on("tick", function() {
-        link.attr("x1", function(d) { return d.source.x; })
-            .attr("y1", function(d) { return d.source.y; })
-            .attr("x2", function(d) { return d.target.x; })
-            .attr("y2", function(d) { return d.target.y; });
+  // node.attr("cx", function(d) { return d.x; })
+  //     .attr("cy", function(d) { return d.y; });
+      node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
 
-        node.attr("cx", function(d) { return d.x; })
-            .attr("cy", function(d) { return d.y; });
-      });
-    });
-// force
+}
 
+function mouseOut(d) {
+  // d3.select(this).classed("fixed", d.fixed = false);
+  document.getElementById("detail").innerHTML="<br>";
+  d3.select(this).attr("r",7)
+  .style("fill-opacity",function(d){return 0.8});
+  
+}
 
+function mouseOver(d) {
+  // d3.select(this).classed("fixed", d.fixed = true);
+  d3.select(this).attr("r",15)
+  .style("fill-opacity",function(d){return 1;})
+  d3.select(this).append("title").text(function(d){return d.name;});
+  document.getElementById("detail").innerHTML=d.name;
+}
 
-  // circle
-    var width = Math.max(960, innerWidth),
-    height = 460;
+function click (d) {
+  // alert(d.name);
+  var x = "http://www.facebook.com.tw/"+d.id;
+  window.open(x, d.name);
+}
 
- i = 0;
-
- svg = d3.select("h4").append("svg")
-    .attr("width", width)
-    .attr("height", height);
-    svg.append("rect")
-    .attr("width", width)
-    .attr("height", height)
-    .on("ontouchstart" in document ? "touchmove" : "mousemove", particle);
-    //circle
 }
 
 
@@ -82,10 +100,10 @@ window.onload=function(){
 window.fbAsyncInit = function() {
         // init the FB JS SDK
         FB.init({
-        appId : FacebookAppId, // App ID from the app dashboard
-        cookie : true, // Allowed server-side to fetch fb auth cookie
-        status : true, // Check Facebook Login status
-        xfbml : true, // Look for social plugins on the page
+        appId      : FacebookAppId,                        // App ID from the app dashboard
+        cookie     : true,                                 // Allowed server-side to fetch fb auth cookie
+        status     : true,                                 // Check Facebook Login status
+        xfbml      : true,                                  // Look for social plugins on the page
         oauth:true
         });
 
@@ -145,26 +163,3 @@ window.fbAsyncInit = function() {
         }
 //FB login test end
 
-
-
-
-
-
-function particle() {
-  var m = d3.mouse(this);
-
-  svg.insert("circle", "rect")
-      .attr("cx", m[0])
-      .attr("cy", m[1])
-      .attr("r", 1e-6)
-      .style("stroke", d3.hsl((i = (i + 1) % 360), 1, .5))
-      .style("stroke-opacity", 1)
-    .transition()
-      .duration(2000)
-      .ease(Math.sqrt)
-      .attr("r", 100)
-      .style("stroke-opacity", 1e-6)
-      .remove();
-
-  d3.event.preventDefault();
-}
