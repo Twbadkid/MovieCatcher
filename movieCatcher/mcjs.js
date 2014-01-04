@@ -5,7 +5,7 @@ window.onload=function(){
   var width = 1300,
     height = 400;
 
-        var color = d3.scale.category20();
+        var color = d3.scale.category20c();
     var colors = d3.scale.category10();
 
 
@@ -45,7 +45,7 @@ node = svg.selectAll("node")
           .attr("r", 7) //node的半徑 ( 5)
           .attr("src","https://github.com/favicon.ico")
 
-          .style("fill", function(d) { return color(d.group); })
+          .style("fill", function(d) { return color(d.name); })
           .style("fill-opacity",function(d){return 0.8})
 
           // .style("stroke",function(d){return "black"})
