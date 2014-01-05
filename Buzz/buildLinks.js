@@ -11,7 +11,7 @@ function build(){
 	});
 	pStr = pStr.slice(pStr.indexOf('{"name'),pStr.lastIndexOf("}")+1);
 	//document.getElementById("myjson").innerHTML = pStr;
-	pStr = '{"nodes":[' + '{"name":"???","group":"???"},' + pStr;
+	pStr = '{"nodes":[' + '{"name":"???","user":"???"},' + pStr;
 	jsonStr = JSON.parse(pStr);
 	pStr = pStr.slice(0,pStr.lastIndexOf("]"));
 
@@ -69,18 +69,29 @@ function build(){
 	//diffmovie
 	for(var i = 1;i<sum;i++){
 		for(var j = i+1;j<sum;j++){
-			if(jsonStr.nodes[i].group == jsonStr.nodes[j].group){
-				graph[i][j] = "2";
+			if(jsonStr.nodes[i].user == jsonStr.nodes[j].user){
+				if(jsonStr.nodes[i].gender == "female"){			
+					graph[i][j] = "2";					//female
+				}else if(jsonStr.nodes[i].gender == "male"){	
+					graph[i][j] = "3";					//male
+				}else{										
+					graph[i][j] = "4";					//unknown
+				}
 			}
 		}
 	}
 	//changjson
+	pStr = pStr + '{"source":0,"target":0,"color":"1"},{"source":0,"target":0,"color":"n1"},{"source":0,"target":0,"color":"n2"},{"source":0,"target":0,"color":"0"},{"source":0,"target":0,"color":"n3"},{"source":0,"target":0,"color":"n4"},{"source":0,"target":0,"color":"n5"},{"source":0,"target":0,"color":"2"},';
 	for(var i = 1;i<sum;i++){
 		for(var j = 1;j<sum;j++){
 			if(graph[i][j] == "1"){
-				pStr = pStr + '{"source":' + (i-1) + ',"target":' + (j-1) + ',"weight":1' + ',"color":' + '},';
+				pStr = pStr + '{"source":' + (i-1) + ',"target":' + (j-1) + ',"weight":1' + ',"color":2' + '},';
 			}else if(graph[i][j] == "2"){
-				pStr = pStr + '{"source":' + (i-1) + ',"target":' + (j-1) + ',"weight":2' + ',"color":' + '},';
+				pStr = pStr + '{"source":' + (i-1) + ',"target":' + (j-1) + ',"weight":2' + ',"color":0' + '},';
+			}else if(graph[i][j] == "3"){			
+				pStr = pStr + '{"source":' + (i-1) + ',"target":' + (j-1) + ',"weight":2' + ',"color":1' + '},';
+			}else if(graph[i][j] == "4"){
+				pStr = pStr + '{"source":' + (i-1) + ',"target":' + (j-1) + ',"weight":2' + ',"color":n2' + '},';
 			}
 		}
 	}
