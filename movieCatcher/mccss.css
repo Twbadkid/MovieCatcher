@@ -3,6 +3,44 @@
 	background-repeat:no-repeat;
 }
 
+@font-face {
+    font-family: Hand Serif Web;
+    src: url(handwriting-draft_free-version.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: Alice Serif Web;
+    src: url(Alice_in_Wonderland_3.ttf) format("truetype");
+}
+
+.MN{
+	font-family: "Alice Serif Web";
+	font-size: 40;
+	color: white;
+}
+
+.moviename{
+	color: white;
+	font-weight: bold;
+	font-size: 50;
+	text-align: center;
+	font-family: "Hand Serif Web";
+}
+
+.title{
+	text-align: left;
+	font-size: 60;
+	color: white;
+	font-family: "Hand Serif Web";
+}
+
+.myjson { 
+	display:block;/*統一轉化為塊級元素*/ 
+	overflow:hidden; 
+	width:0; 
+	height:0; 
+}
+
 .node {
 	cursor: cell;
 }
@@ -11,6 +49,7 @@
   pointer-events: none;
   font: 10px sans-serif;
 }
+/*what is this???*/
 
 .rec{
 	background-color: white;
