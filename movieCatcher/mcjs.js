@@ -2,6 +2,7 @@
 var svg ;
 
 window.onload=function(){
+	build();
   var width = 1300,
     height = 400;
 
@@ -95,9 +96,9 @@ function dbclick (d) {
 
 function click(d){
   var x = "http://www.facebook.com.tw/"+d.id;
-  var y = "<img src='img/logo_small.png'> Movie : "+d.name;
+  var y = "<img src='https://googledrive.com/host/0B04MUDykjgxRNTRKU1kxdHpyck0/img/logo_small.png'> Movie : "+d.name;
   document.getElementById("Movie").innerHTML=y;
-  document.getElementById("FP").innerHTML="<a href=" + x + " target='blank'><img src='img/logo_small.png'>FB Fan Page<img src='img/logo_small.png'></a>  ";
+  document.getElementById("FP").innerHTML="<a href=" + x + " target='blank'><img src='https://googledrive.com/host/0B04MUDykjgxRNTRKU1kxdHpyck0/img/logo_small.png'>FB Fan Page<img src='https://googledrive.com/host/0B04MUDykjgxRNTRKU1kxdHpyck0/img/logo_small.png'></a>  ";
 }
 
 function fp(d){

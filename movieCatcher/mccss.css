@@ -1,41 +1,17 @@
 ﻿h6{
-	background-image: url("img/logo.png");
+	background-image: url("https://googledrive.com/host/0B04MUDykjgxRNTRKU1kxdHpyck0/img/logo.png");
 	background-repeat:no-repeat;
 }
 
 @font-face {
     font-family: Hand Serif Web;
-    src: url(font/handwriting-draft_free-version.ttf) format("truetype");
+    src: url(https://googledrive.com/host/0B04MUDykjgxRNTRKU1kxdHpyck0/handwriting-draft_free-version.ttf) format("truetype");
 }
 
 @font-face {
     font-family: Alice Serif Web;
-    src: url(font/Alice_in_Wonderland_3.ttf) format("truetype");
+    src: url(https://googledrive.com/host/0B04MUDykjgxRNTRKU1kxdHpyck0/Alice_in_Wonderland_3.ttf) format("truetype");
 }
-
-
-.chineseFont {
-
-font-size: 66pt;
-
-letter-spacing: 2pt;
-
-line-height: 0;
-
-opacity: 1;
-
-color: #FFFFFF;
-
--webkit-transform: -0.01deg;
-
--moz-transform: -0.01deg;
-
-transform: -0.01deg;
-
-text-shadow: 0.05em 0.05em 0.1em #4A5532;
-
-}
-
 
 .MN{
 	font-family: "Alice Serif Web";
