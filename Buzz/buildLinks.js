@@ -77,6 +77,7 @@ function build(){
 				}else{										
 					graph[i][j] = "4";					//unknown
 				}
+				break;
 			}
 		}
 	}
