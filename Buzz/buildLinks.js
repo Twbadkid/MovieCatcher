@@ -1,16 +1,19 @@
+window.onload=build();
 function build(){
 	var pStr = document.getElementById("myjson").innerHTML;
 	var jsonStr = JSON.parse(pStr);
 	
 	//sort nodes
 	jsonStr.nodes.sort(function(a,b){
-		if(a.name < b.name ) return -1;
-		else if (a.name > b.name) return 1;
-		else return 0;
+		//if(a.name < b.name ) return -1;
+		//else if (a.name > b.name) return 1;
+		//else return 0;
+		return a.id - b.id;
 	});
+	pStr = JSON.stringify(jsonStr);
 	pStr = pStr.slice(pStr.indexOf('{"name'),pStr.lastIndexOf("}")+1);
 	//document.getElementById("myjson").innerHTML = pStr;
-	pStr = '{"nodes":[' + '{"name":"???","user":"???"},' + pStr;
+	pStr = '{"nodes":[' + '{"name":"???","group":1,"id":"???","user":"???","gender":"???"},' + pStr;
 	jsonStr = JSON.parse(pStr);
 	pStr = pStr.slice(0,pStr.lastIndexOf("]"));
 
