@@ -12,7 +12,7 @@ window.onload=function(){
 var force = d3.layout.force()
     .size([width, height])
     .charge(-120)
-    .linkDistance(20)
+    .linkDistance(30)
     .on("tick", tick);
 
 // var drag = force.drag()

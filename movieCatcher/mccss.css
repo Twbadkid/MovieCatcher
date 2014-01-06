@@ -13,6 +13,30 @@
     src: url(Alice_in_Wonderland_3.ttf) format("truetype");
 }
 
+
+.chineseFont {
+
+font-size: 66pt;
+
+letter-spacing: 2pt;
+
+line-height: 0;
+
+opacity: 1;
+
+color: #FFFFFF;
+
+-webkit-transform: -0.01deg;
+
+-moz-transform: -0.01deg;
+
+transform: -0.01deg;
+
+text-shadow: 0.05em 0.05em 0.1em #4A5532;
+
+}
+
+
 .MN{
 	font-family: "Alice Serif Web";
 	font-size: 40;
