@@ -21,14 +21,14 @@
 		{"name":"Movie6","group":6}
 	],
 	"links":[
-		{"source":0,"target":0,"color":"m"},
+		{"source":0,"target":0,"color":"1"},
 		{"source":0,"target":0,"color":"n1"},
 		{"source":0,"target":0,"color":"n2"},
-		{"source":0,"target":0,"color":"w"},
+		{"source":0,"target":0,"color":"0"},
 		{"source":0,"target":0,"color":"n3"},
 		{"source":0,"target":0,"color":"n4"},
 		{"source":0,"target":0,"color":"n5"},
-		{"source":0,"target":0,"color":"g"},
+		{"source":0,"target":0,"color":"2"},
 
 		{"source":0,"target":0,"color":"g"},
 		{"source":1,"target":2,"color":"g"},

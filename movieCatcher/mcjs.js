@@ -12,7 +12,7 @@ window.onload=function(){
 var force = d3.layout.force()
     .size([width, height])
     .charge(-120)
-    .linkDistance(20)
+    .linkDistance(30)
     .on("tick", tick);
 
 // var drag = force.drag()
@@ -40,7 +40,7 @@ link = svg.selectAll("line")
 
 node = svg.selectAll("node")
           .data(graph.nodes)
-        .enter().append("circle")
+          .enter().append("circle")
           .attr("class", "node")
           .attr("r", 7) //node的半徑 ( 5)
           .attr("src","https://github.com/favicon.ico")
@@ -53,7 +53,8 @@ node = svg.selectAll("node")
           // .style("stroke-opacity",function(d){return 0.8;})
           .on("mouseout",mouseOut)
           .on("mouseover",mouseOver)
-          .on("dblclick",click)
+          // .on("dblclick",dbclick)
+          .on("click",click)
 
           .call(force.drag);
 // });
@@ -86,11 +87,28 @@ function mouseOver(d) {
   document.getElementById("detail").innerHTML=d.name;
 }
 
-function click (d) {
+function dbclick (d) {
   // alert(d.name);
   var x = "http://www.facebook.com.tw/"+d.id;
   window.open(x, d.name);
 }
+
+function click(d){
+  var x = "http://www.facebook.com.tw/"+d.id;
+  var y = "<img src='img/logo_small.png'> Movie : "+d.name;
+  document.getElementById("Movie").innerHTML=y;
+  document.getElementById("FP").innerHTML="<a href=" + x + " target='blank'><img src='img/logo_small.png'>FB Fan Page<img src='img/logo_small.png'></a>  ";
+}
+
+function fp(d){
+  var x = "http://facebook.com.tw/"+d.id;
+  window.open(x.d.name);
+}
+
+document.getElementById("FP").setAttribute("onclick","fp()");
+
+
+
 
 }
 

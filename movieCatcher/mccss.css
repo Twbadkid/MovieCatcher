@@ -3,6 +3,68 @@
 	background-repeat:no-repeat;
 }
 
+@font-face {
+    font-family: Hand Serif Web;
+    src: url(font/handwriting-draft_free-version.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: Alice Serif Web;
+    src: url(font/Alice_in_Wonderland_3.ttf) format("truetype");
+}
+
+
+.chineseFont {
+
+font-size: 66pt;
+
+letter-spacing: 2pt;
+
+line-height: 0;
+
+opacity: 1;
+
+color: #FFFFFF;
+
+-webkit-transform: -0.01deg;
+
+-moz-transform: -0.01deg;
+
+transform: -0.01deg;
+
+text-shadow: 0.05em 0.05em 0.1em #4A5532;
+
+}
+
+
+.MN{
+	font-family: "Alice Serif Web";
+	font-size: 40;
+	color: white;
+}
+
+.moviename{
+	color: white;
+	font-weight: bold;
+	font-size: 50;
+	text-align: center;
+	font-family: "Hand Serif Web";
+}
+
+.title{
+	text-align: left;
+	font-size: 60;
+	color: white;
+	font-family: "Hand Serif Web";
+}
+
+.myjson { 
+	display:block;/*統一轉化為塊級元素*/ 
+	overflow:hidden; 
+	width:0; 
+	height:0; 
+}
+
 .node {
 	cursor: cell;
 }
@@ -11,6 +73,7 @@
   pointer-events: none;
   font: 10px sans-serif;
 }
+/*what is this???*/
 
 .rec{
 	background-color: white;
