@@ -8,6 +8,7 @@ function build(){
 		else if (a.name > b.name) return 1;
 		else return 0;
 	});
+	pStr = JSON.stringify(jsonStr);
 	pStr = pStr.slice(pStr.indexOf('{"name'),pStr.lastIndexOf("}")+1);
 	//document.getElementById("myjson").innerHTML = pStr;
 	pStr = '{"nodes":[' + '{"name":"???","user":"???"},' + pStr;
