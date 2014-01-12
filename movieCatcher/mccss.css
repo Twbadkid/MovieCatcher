@@ -1,6 +1,19 @@
-﻿h6{
+﻿#left{
+	/*background-color: ;*/
+	width:60%;
+	height: 100%;
+	float: left;
+}
+#right{
+	/*background-color: blue;*/
+	width:40%;
+	float:right;
+}
+
+h6{
 	background-image: url("https://googledrive.com/host/0B04MUDykjgxRNTRKU1kxdHpyck0/img/logo.png");
 	background-repeat:no-repeat;
+
 }
 
 @font-face {
@@ -13,10 +26,30 @@
     src: url(https://googledrive.com/host/0B04MUDykjgxRNTRKU1kxdHpyck0/Alice_in_Wonderland_3.ttf) format("truetype");
 }
 
+@font-face {
+    font-family: Mons Serif Web;
+    src: url(electricsphere.ttf) format("truetype");
+}
+
+.monsfont{
+	font-family: "Mons Serif Web";
+	font-size: 8;
+	text-align: center;
+	color : F5FFFA;
+	font-style: bold;
+}
+
+.size{
+	width: 100%;
+	text-align: left;
+	vertical-align: center;
+}
+
 .MN{
 	font-family: "Alice Serif Web";
 	font-size: 40;
 	color: white;
+	text-align: left;
 }
 
 .moviename{
@@ -27,6 +60,13 @@
 	font-family: "Hand Serif Web";
 }
 
+.myjson{
+	display:block; 
+	overflow:hidden; 
+	width:0; 
+	height:0; 
+}
+
 .title{
 	text-align: left;
 	font-size: 60;
@@ -34,12 +74,6 @@
 	font-family: "Hand Serif Web";
 }
 
-.myjson { 
-	display:block;/*統一轉化為塊級元素*/ 
-	overflow:hidden; 
-	width:0; 
-	height:0; 
-}
 
 .node {
 	cursor: cell;
@@ -51,8 +85,8 @@
 }
 /*what is this???*/
 
-.rec{
-	background-color: white;
+.cen{
+	text-align: center;
 }
 
 .ll{
