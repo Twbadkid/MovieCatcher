@@ -2,17 +2,17 @@ var word ;
 var page = 0;
 var ii;
 var count = 0;
-var next,previous;
+var next,skip;
 window.fbAsyncInit = function() {
         // init the FB JS SDK
         FB.init({
-            appId      : '1434150786800444',              // App ID from the app dashboard
+            appId      : '207835636074455',              // App ID from the app dashboard
             cookie     : true,                                 // Allowed server-side to fetch fb auth cookie
             status     : true,                                 // Check Facebook Login status
             xfbml      : true,                                 // Look for social plugins on the page
             oauth      : true
         });
-        window.fbLoaded();
+        //window.fbLoaded();
     };
     (function(d, s, id){
     	var js, fjs = d.getElementsByTagName(s)[0];
@@ -56,6 +56,8 @@ window.onload=function() {
 
 	next = document.getElementById('next');
 	next.setAttribute("onclick","nextListener(this);");
+	skip = document.getElementById("skip");
+	skip.setAttribute("onclick","page=8;nextListener();");
 }
 
 function loading(){
@@ -80,7 +82,9 @@ function typeWrite(){
   		setTimeout("typeWrite()",40);
  	}
 }
+function login(){
 
+}
 function nextListener(g) {
 	if (page==0) {
 		next = document.getElementById("page1");
@@ -139,11 +143,19 @@ function nextListener(g) {
 	}else if(page==8){
 		next = document.getElementById("page9");
 		document.getElementById("img7").setAttribute("class","imgclass");
+		skip.innerHTML = "";
 		word=next.innerHTML;
 		count=0;
 		typeWrite(ii);
 		page++;
+		document.getElementById('next').innerHTML = 'Login FB to Start!';
 	}else if(page==9){
+		FB.login(function(response){
+              if (response.authResponse) {
+                   var accessToken = response.authResponse.accessToken;
+                   set_cookie('fb_access_token', accessToken);
+                   }
+        }, {'scope': fb_login_scopes.join(",")});
 		next = document.getElementById("page9");
 		next.innerHTML = "Are you READY?"
 		document.getElementById("img8").setAttribute("class","imgclass");
@@ -164,3 +176,4 @@ function nextListener(g) {
 	}
 
 }
+

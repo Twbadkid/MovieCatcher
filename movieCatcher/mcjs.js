@@ -1,10 +1,26 @@
-
-var svg ;
-
+var svg;
+var mname;
+var mlink;
+var checkB = 3;
+var checkP = 3;
+var boy,girl,all;
+	var boy_up='https://googledrive.com/host/0B04MUDykjgxRNTRKU1kxdHpyck0/img/gender/boy_up.png';
+	var boy_opacity='https://googledrive.com/host/0B04MUDykjgxRNTRKU1kxdHpyck0/img/gender/boy_opacity.png';
+	var boy_black='https://googledrive.com/host/0B04MUDykjgxRNTRKU1kxdHpyck0/img/gender/boy_black.png';
+	var girl_up='https://googledrive.com/host/0B04MUDykjgxRNTRKU1kxdHpyck0/img/gender/girl_up.png';
+	var girl_opacity='https://googledrive.com/host/0B04MUDykjgxRNTRKU1kxdHpyck0/img/gender/girl_opacity.png';
+	var girl_black='https://googledrive.com/host/0B04MUDykjgxRNTRKU1kxdHpyck0/img/gender/girl_black.png';
+	var all_up='https://googledrive.com/host/0B04MUDykjgxRNTRKU1kxdHpyck0/img/gender/all_up.png';
+	var all_opacity='https://googledrive.com/host/0B04MUDykjgxRNTRKU1kxdHpyck0/img/gender/all_opacity.png';
+	var all_black='https://googledrive.com/host/0B04MUDykjgxRNTRKU1kxdHpyck0/img/gender/all_black.png';
 window.onload=function(){
 	build();
 	draw();
+	$.preload(boy_up,boy_opacity,boy_black,girl_up,girl_opacity,girl_black,all_up,all_opacity,all_black);
 };
+
+
+
 function draw(){
 	document.getElementById("hsix").style.maxWidth = (screen.width)*(0.6)+"px";
 	document.getElementById("hsix").style.height = (screen.height)*(0.65)+"px";
@@ -71,7 +87,7 @@ function draw(){
 
 		.on("mouseout",mouseOut)
 		.on("mouseover",mouseOver)
-		// .on("dblclick",dbclick)
+		.on("dblclick",dbclick)
 		.on("click",click)
 
 		.call(force.drag);
@@ -105,15 +121,16 @@ function draw(){
 	}
 
 	function dbclick (d) {
-		// alert(d.name);
-		var x = "http://www.facebook.com.tw/"+d.id;
-		window.open(x, d.name);
+		d3.select(this).classed("fixed", d.fixed = false);
 	}
 
 	function click(d){
+		d3.select(this).classed("fixed", d.fixed = true);
 		var x = "http://www.facebook.com.tw/"+d.id;
 		var y = "<img src='https://googledrive.com/host/0B04MUDykjgxRNTRKU1kxdHpyck0/img/logo_small.png'> Movie : <br>"+d.name;
 		var z = "<img src='https://googledrive.com/host/0B04MUDykjgxRNTRKU1kxdHpyck0/img/logo_small.png'> Audience : <br>"+d.user;
+		mname = d.name;
+		mlink = x;
 		document.getElementById("Movie").innerHTML=y;
 		document.getElementById("audience").innerHTML=z;
 		document.getElementById("FP").innerHTML="<a href=" + x + " target='blank'><img src='https://googledrive.com/host/0B04MUDykjgxRNTRKU1kxdHpyck0/img/logo_small.png'> FB Fan Page <img src='https://googledrive.com/host/0B04MUDykjgxRNTRKU1kxdHpyck0/img/logo_small.png'></a>  ";
@@ -123,15 +140,101 @@ function draw(){
 		var x = "http://facebook.com.tw/"+d.id;
 		window.open(x.d.name);
 	}
-	document.getElementById("boyButton").setAttribute("onclick","change('1');");
-	document.getElementById("girlButton").setAttribute("onclick","change('2');");
-	document.getElementById("unknowButton").setAttribute("onclick","change('0');");
+
+	boy = document.getElementById("boyButton");
+	girl = document.getElementById("girlButton");
+	all = document.getElementById("unknowButton");
+
+	boy.setAttribute("onclick","change('1');");
+	girl.setAttribute("onclick","change('2');");
+	all.setAttribute("onclick","change('0');");
+
+	/*if(checkB==3){
+		//boy.setAttribute("onmouseover","this.src=boy_up");
+		//boy.setAttribute("onmouseout","this.src=boy_opacity");
+		//girl.setAttribute("onmouseover","this.src=girl_up");
+		//girl.setAttribute("onmouseout","this.src=girl_opacity");
+		//all.setAttribute("onmouseover","this.src=all_up");
+		//all.setAttribute("onmouseout","this.src=all_opacity");
+	}else if(checkB==1){
+		boy.setAttribute("onmouseover","");
+		boy.setAttribute("onmouseout","");
+		girl.setAttribute("onmouseover","this.src=girl_up");
+		girl.setAttribute("onmouseout","this.src=girl_opacity");
+		all.setAttribute("onmouseover","this.src=all_up");
+		all.setAttribute("onmouseout","this.src=all_opacity");
+		boy.src=boy_black;
+		girl.src=girl_opacity;
+		all.src=all_opacity;
+	}else if(checkB==2){
+		boy.setAttribute("onmouseover","this.src=boy_up");
+		boy.setAttribute("onmouseout","this.src=boy_opacity");
+		girl.setAttribute("onmouseover","");
+		girl.setAttribute("onmouseout","");
+		all.setAttribute("onmouseover","this.src=all_up");
+		all.setAttribute("onmouseout","this.src=all_opacity");
+		boy.src=boy_opacity;
+		girl.src=girl_black;
+		all.src=all_opacity;
+	}else if(checkB==0){
+		//boy.setAttribute("onmouseover","this.src=boy_up");
+		//boy.setAttribute("onmouseout","this.src=boy_opacity");
+		//girl.setAttribute("onmouseover","this.src=girl_up");
+		//girl.setAttribute("onmouseout","this.src=girl_opacity");
+		//all.setAttribute("onmouseover","");
+		//all.setAttribute("onmouseout","");
+		//boy.src=boy_opacity;
+		//girl.src=girl_opacity;
+		//all.src=all_black;
+	}*/
+
 	document.getElementById("FP").setAttribute("onclick","fp()");
 	document.getElementById("in").setAttribute("onclick","text()");
-	document.getElementById("publish").setAttribute("onclick","alert('Hello');");
+	document.getElementById("publish").setAttribute("onclick","post()");
+
+}
+function post(){
+	var body=document.getElementById("in").value+"\n\nWatch Movie with me : "+mname+"\nMovie info : "+mlink+"\nPosted From MovieCatcher :http://moviecatcher.herokuapp.com/" ;
+	FB.api('/me/feed', 'post', { message: body }, function(response) {
+		//console.log(response);
+		if (!response) {
+			alert('No response');
+		}else if(response.error){
+			alert("Push the Button on the top right to login Facebook~");
+		} else {
+			alert("Post success,Invite more friends to try this~~");
+	}
+	});
+}
+
+var flag=true;
+function text(x){
+	if(flag){
+		document.getElementById("in").value="";
+		flag=false;
+	}
 
 }
 function change(d){
+
+	if(d==1){
+		checkB = 1;
+		boy.setAttribute("class","boy-but-press");
+		girl.setAttribute("class","girl-but");
+		all.setAttribute("class","all-but");
+	}else if(d==2){
+		checkB = 2;
+		boy.setAttribute("class","boy-but");
+		girl.setAttribute("class","girl-but-press");
+		all.setAttribute("class","all-but");
+	}else if(d==0){
+		checkB = 0;
+		boy.setAttribute("class","boy-but");
+		girl.setAttribute("class","girl-but");
+		all.setAttribute("class","all-but-press");
+	}
+
+
 	document.getElementById("hsix").innerHTML="";	
 	if(d=='0'){
 		document.getElementById("json").innerHTML="0";
@@ -140,24 +243,19 @@ function change(d){
 	}else{
 		document.getElementById("json").innerHTML="2";
 	}
+	
 	draw();
 }
-
-
-function text(x){
-	document.getElementById("in").value="";
-}
-
 
 //FB login test start
 window.fbAsyncInit = function() {
 	// init the FB JS SDK
 	FB.init({
-		appId      : FacebookAppId,                        // App ID from the app dashboard
-	cookie     : true,                                 // Allowed server-side to fetch fb auth cookie
-	status     : true,                                 // Check Facebook Login status
-	xfbml      : true,                                  // Look for social plugins on the page
-	oauth:true
+		appId		:'207835636074455',                        // App ID from the app dashboard
+		cookie		:true,                                 // Allowed server-side to fetch fb auth cookie
+		status		:true,                                 // Check Facebook Login status
+		xfbml		:true,                                  // Look for social plugins on the page
+		oauth		:true
 	});
 
 	// Additional initialization code such as adding Event Listeners goes here
@@ -176,43 +274,41 @@ window.fbAsyncInit = function() {
 	fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-// alert("fbLoaded has been running");
-window.fbLoaded = function () {
-
+function login(){
 	FB.login(function(response){
 		//check if user already login,
-		if(response.authResponse){
+	if(response.authResponse){
 			fetch_my_profile();
-		}else{ //if user has not login, will pop to ask
-			FB.Event.subscribe('auth.login',function(response){
-				// if(response.authResponse){
-				fetch_my_profile();
-				// }
-			});
-		}
+	}else{ //if user has not login, will pop to ask
+		FB.Event.subscribe('auth.login',function(response){
+			// if(response.authResponse){
+			fetch_my_profile();
+			// }
+		});
+	}
 	},{scope:''});
-
-	function fetch_my_profile() {
-		FB.api('/me', function(response) {
-			var my_name = response.name;
-			var my_gender = response.gender;
-			var my_username = response.username;
-			var my_facebook_id = response.id;
-
-			$("#my-profile-name").html(my_name);
-			$("#my-profile-gender").html(my_gender);
-			$("#my-profile-username").html(my_username);
-			$("#my-profile-facebook-id").html(my_facebook_id);
-		});
-
-		FB.api('/me/picture?width=50', function(response) {
-			var my_picture_url = response.data.url;
-
-			$("#my-profile-picture").attr('src', my_picture_url);
-
-		});
-	};
-
+}
+function fetch_my_profile() {
+	FB.api('/me', function(response) {
+		var my_name = response.name;
+		var my_gender = response.gender;
+		var my_username = response.username;
+		var my_facebook_id = response.id;
+		$("#my-profile-name").html(my_name);
+		$("#my-profile-gender").html(my_gender);
+		$("#my-profile-username").html(my_username);
+		$("#my-profile-facebook-id").html(my_facebook_id);
+	});
+	FB.api('/me/picture?width=50', function(response) {
+		var my_picture_url = response.data.url;
+		$("#my-profile-picture").attr('src', my_picture_url);
+	});
+	document.getElementById("hi").innerHTML="Hi!";
+};
+// alert("fbLoaded has been running");
+window.fbLoaded = function () {
+	//$("#FB-login-button").on("click",login);
+	login();
 }
 //FB login test end
 

@@ -26,8 +26,8 @@ function build(){
 	var sum = 1;
 	var sumg = 1;
 	var sumb = 1;
-	var gi = 1;
-	var bi = 1;
+	var gi = 0;
+	var bi = 0;
 	num[0] = 0;
 	numg[0] = 0;
 	numb[0] = 0;
@@ -37,26 +37,26 @@ function build(){
 		if(jsonStr.nodes[i].name == jsonStr.nodes[i-1].name){
 			if(jsonStr.nodes[i].gender == "female"){
 				numg[gi]>0?numg[gi]++:numg[gi] = 1;
-				pStrg = pStrg + '{"name":"' + jsonStr.nodes[i].name + '","id":' + jsonStr.nodes[i].id + ',"user":"' + jsonStr.nodes[i].user + '","genser":"' + jsonStr.nodes[i].gender + '"},';
+				pStrg = pStrg + '{"name":"' + jsonStr.nodes[i].name + '","id":' + jsonStr.nodes[i].id + ',"user":"' + jsonStr.nodes[i].user + '","gender":"' + jsonStr.nodes[i].gender + '"},';
 			}else if(jsonStr.nodes[i].gender == "male"){
 				numb[bi]>0?numb[bi]++:numb[bi] = 1;
-				pStrb = pStrb + '{"name":"' + jsonStr.nodes[i].name + '","id":' + jsonStr.nodes[i].id + ',"user":"' + jsonStr.nodes[i].user + '","genser":"' + jsonStr.nodes[i].gender + '"},';
+				pStrb = pStrb + '{"name":"' + jsonStr.nodes[i].name + '","id":' + jsonStr.nodes[i].id + ',"user":"' + jsonStr.nodes[i].user + '","gender":"' + jsonStr.nodes[i].gender + '"},';
 			}
 			num[current]>0?num[current]++:num[current] = 1;
 		}else{
+			if (numg[gi]>=0) gi++;
+			if (numb[bi]>=0) bi++;
 			if(jsonStr.nodes[i].gender == "female"){
 				numg[gi]>0?numg[gi]++:numg[gi] = 1;
-				pStrg = pStrg + '{"name":"' + jsonStr.nodes[i].name + '","id":' + jsonStr.nodes[i].id + ',"user":"' + jsonStr.nodes[i].user + '","genser":"' + jsonStr.nodes[i].gender + '"},';
+				pStrg = pStrg + '{"name":"' + jsonStr.nodes[i].name + '","id":' + jsonStr.nodes[i].id + ',"user":"' + jsonStr.nodes[i].user + '","gender":"' + jsonStr.nodes[i].gender + '"},';
 			}else if(jsonStr.nodes[i].gender == "male"){
 				numb[bi]>0?numb[bi]++:numb[bi] = 1;
-				pStrb = pStrb + '{"name":"' + jsonStr.nodes[i].name + '","id":' + jsonStr.nodes[i].id + ',"user":"' + jsonStr.nodes[i].user + '","genser":"' + jsonStr.nodes[i].gender + '"},';
+				pStrb = pStrb + '{"name":"' + jsonStr.nodes[i].name + '","id":' + jsonStr.nodes[i].id + ',"user":"' + jsonStr.nodes[i].user + '","gender":"' + jsonStr.nodes[i].gender + '"},';
 			}
-			if (numg[gi]>0) gi++;
-			if (numb[bi]>0) bi++;
 			current++;
 			num[current] = 1;
 		}
-		//alert(numg[4]);
+		//console.log(numg[gi]);
 	}
 	pStrg = pStrg + '],"links":[]}';
 	pStrb = pStrb + '],"links":[]}';
@@ -135,21 +135,27 @@ function build(){
 	for(var i = 1;i<num.length-1;i++){
 		index = index + num[i-1];
 		for(var j = 1;j<num[i];j++){
-			graph[index+j][index+j+1]="1";
+			for(var z=j;z<num[i];z++){
+				graph[index+j][index+z+1]="1";
+			}
 		}
 	}
 	index = 0;
 	for(var i = 1;i<numg.length-1;i++){
 		index = index + numg[i-1];
-		for(var j = 1;j<numg[i];j++){
-			graphg[index+j][index+j+1]="1";
+		for(var j = 1;j<numg[i];j++){	
+			for(var z=j;z<numg[i];z++){
+				graphg[index+j][index+z+1]="1";
+			}
 		}
 	}
 	index = 0;
 	for(var i = 1;i<numb.length-1;i++){
 		index = index + numb[i-1];
 		for(var j = 1;j<numb[i];j++){
-			graphb[index+j][index+j+1]="1";
+			for(var z=j;z<numb[i];z++){
+				graphb[index+j][index+z+1]="1";
+			}
 		}
 	}
 
@@ -192,7 +198,7 @@ function build(){
 	for(var i = 1;i<sum;i++){
 		for(var j = 1;j<sum;j++){
 			if(graph[i][j] == "1"){
-				pStr = pStr + '{"source":' + (i-1) + ',"target":' + (j-1) + ',"weight":15' + ',"color":2' + '},';
+				pStr = pStr + '{"source":' + (i-1) + ',"target":' + (j-1) + ',"weight":3' + ',"color":2' + '},';
 			}else if(graph[i][j] == "2"){
 				pStr = pStr + '{"source":' + (i-1) + ',"target":' + (j-1) + ',"weight":3' + ',"color":0' + '},';
 			}else if(graph[i][j] == "3"){			
@@ -205,7 +211,7 @@ function build(){
 	for(var i = 1;i<sumg;i++){
 		for(var j = 1;j<sumg;j++){
 			if(graphg[i][j] == "1"){
-				pStrg = pStrg + '{"source":' + (i-1) + ',"target":' + (j-1) + ',"weight":15' + ',"color":2' + '},';
+				pStrg = pStrg + '{"source":' + (i-1) + ',"target":' + (j-1) + ',"weight":3' + ',"color":2' + '},';
 			}else if(graphg[i][j] == "2"){
 				pStrg = pStrg + '{"source":' + (i-1) + ',"target":' + (j-1) + ',"weight":3' + ',"color":0' + '},';
 			}
@@ -215,7 +221,7 @@ function build(){
 	for(var i = 1;i<sumb;i++){
 		for(var j = 1;j<sumb;j++){
 			if(graphb[i][j] == "1"){
-				pStrb = pStrb + '{"source":' + (i-1) + ',"target":' + (j-1) + ',"weight":15' + ',"color":2' + '},';
+				pStrb = pStrb + '{"source":' + (i-1) + ',"target":' + (j-1) + ',"weight":3' + ',"color":2' + '},';
 			}else if(graphb[i][j] == "3"){			
 				pStrb = pStrb + '{"source":' + (i-1) + ',"target":' + (j-1) + ',"weight":3' + ',"color":1' + '},';
 			}
@@ -236,9 +242,9 @@ function build(){
 	pStr = pStr.replace("},]" , "}]");
 	pStrg = pStrg.replace("},]" , "}]");
 	pStrb = pStrb.replace("},]" , "}]");
-	console.log(pStr);
-	console.log(pStrg);
-	console.log(pStrb);
+	//console.log(pStr);
+	//console.log(pStrg);
+	//console.log(pStrb);
 	document.getElementById("myjson").innerHTML = pStr;
 	document.getElementById("allok").innerHTML = pStrg;
 	document.getElementById("seeyou").innerHTML = pStrb;
